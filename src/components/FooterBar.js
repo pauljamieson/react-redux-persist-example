@@ -12,7 +12,7 @@ const FooterBar = (props) => {
   return (
     <AppBar position="fixed" className={classes.bottom}>
       <Toolbar>
-        <Typography color="textPrimary" variant="h4">
+        <Typography color="textPrimary" variant="h6">
           {strings("copyright")}
         </Typography>
       </Toolbar>
