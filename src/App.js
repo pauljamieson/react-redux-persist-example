@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>
             <ThemeProvider theme={theme}>
               <Main />
