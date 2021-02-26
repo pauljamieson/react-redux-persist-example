@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import strings from "../strings";
 import { theme } from "../theme";
@@ -25,6 +25,7 @@ const NavBar = (props) => {
   const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
+  const isLogged = useSelector((state) => state.isLogged);
 
   return (
     <AppBar position="static">
@@ -60,20 +61,24 @@ const NavBar = (props) => {
         >
           3
         </Button>
-        <Button
-          className={classes.buttons}
-          onClick={() => dispatch(setLoggedIn())}
-          variant="contained"
-        >
-          Log In
-        </Button>
-        <Button
-          className={classes.buttons}
-          onClick={() => dispatch(setLoggedOut())}
-          variant="contained"
-        >
-          Log Out
-        </Button>
+
+        {isLogged ? (
+          <Button
+            className={classes.buttons}
+            onClick={() => dispatch(setLoggedOut())}
+            variant="contained"
+          >
+            Log Out
+          </Button>
+        ) : (
+          <Button
+            className={classes.buttons}
+            onClick={() => dispatch(setLoggedIn())}
+            variant="contained"
+          >
+            Log In
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );
