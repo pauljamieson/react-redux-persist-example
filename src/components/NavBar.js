@@ -6,9 +6,11 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import strings from "../strings";
 import { theme } from "../theme";
+import { setLoggedIn, setLoggedOut } from "../actions";
 
 const useStyles = makeStyles({
   title: {
@@ -22,6 +24,8 @@ const useStyles = makeStyles({
 const NavBar = (props) => {
   const history = useHistory();
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -55,6 +59,20 @@ const NavBar = (props) => {
           variant="contained"
         >
           3
+        </Button>
+        <Button
+          className={classes.buttons}
+          onClick={() => dispatch(setLoggedIn())}
+          variant="contained"
+        >
+          Log In
+        </Button>
+        <Button
+          className={classes.buttons}
+          onClick={() => dispatch(setLoggedOut())}
+          variant="contained"
+        >
+          Log Out
         </Button>
       </Toolbar>
     </AppBar>
